@@ -43,7 +43,7 @@ def is_gas_pump(pump):
     >>> is_gas_pump(9)
     True
     '''
-    if pump > 0 <= 9:
+    if pump > 0 and pump <= 8:
         return True
     else:
         return False
@@ -70,35 +70,34 @@ def get_pump_number():
 
 
 def print_receipt(type_of_gas, amount, cost, pump_number):
-    print('\n\t---------Printing Your receipt----------')
+    print('\n\t------Printing Your receipt-------')
     time.sleep(1.5)
-    print('\t........................................')
-    print('\t........................................')
-    print('\t........................................')
-    print('\t........................................')
-    print('\t........................................')
-    print('\t........................................')
-    print('\t........................................')
-    print('\t........................................')
-    print('\t........................................')
-    print('\t........................................')
+    print('\t..................................')
+    print('\t..................................')
+    print('\t..................................')
+    print('\t..................................')
+    print('\t..................................')
+    print('\t..................................')
+    print('\t..................................')
+    print('\t..................................')
+    print('\t..................................')
+    print('\t..................................')
 
-    print("\n\t_______DANNY'S EXPRESS MART_______")
+    print("\n\t_______DANNY'S EXPRESS MART_______\n")
+    print('              \t 1453 Berkley Ave')
     print("          \t Water Valley, Ms")
-    print('          Thank You Have a blessed day!')
-    print('\n\t.... Type of gas:', type_of_gas)
-    print('\t----------------------------------------')
-    print()
-    print('\t.... Cost of gas:', '$', amount)
-    print('\t----------------------------------------')
-    print()
-    print('\t.... Gallons of gas: {} gallons'.format(cost))
-    print('\t----------------------------------------')
-    print()
-    print('\t.... Pump # ' + str(pump_number))
-    print('\t----------------------------------------')
-    print('\n\t.... Total:', '$' + str(amount))
-    print('\t----------------------------------------')
+    print('           Thank You, Have a blessed day!\n')
+    print('        ***********************************')
+    print('\n\t. Type of gas:', type_of_gas)
+    print('\t-----------------------------------\n')
+    print('\t. Cost of gas:', '$', amount)
+    print('\t-----------------------------------\n')
+    print('\t. Gallons of gas: {} gallons'.format(cost))
+    print('\t-----------------------------------\n')
+    print('\t. Pump # ' + str(pump_number))
+    print('\t-----------------------------------')
+    print('\n\t. Total:', '$' + str(amount))
+    print('\t-----------------------------------')
     print("\n**Please take your receipt**")
 
 
@@ -124,7 +123,7 @@ def main():
     if type_of_gas == 'Pl':
         print('\nprice per gallon for plus is $ 3.00')
 
-    amount = input('\nHow much you paying for? $ ')
+    amount = input('\nHow much you paying for? $')
 
     if amount == 0:
         print('\nGoodbye then')
