@@ -1,18 +1,21 @@
+import time
+
+
 def gas_price(gas_type):
     ''' str -> float
 
-    >>> gas_price('regular')
+    >>> gas_price('R')
     2.0
-    >>> gas_price('premium')
+    >>> gas_price('Pl')
     2.5
-    >>> gas_price('plus')
+    >>> gas_price('P')
     3.0
     '''
-    if gas_type == 'regular':
+    if gas_type == 'R':
         return 2.0
-    if gas_type == 'premium':
+    if gas_type == 'Pl':
         return 2.5
-    if gas_type == 'plus':
+    if gas_type == 'P':
         return 3.0
 
 
@@ -40,10 +43,63 @@ def is_gas_pump(pump):
     >>> is_gas_pump(9)
     True
     '''
-    if pump > 0 < 9:
+    if pump > 0 <= 9:
         return True
     else:
         return False
+
+
+def get_zip_code():
+    while True:
+        z_c = input('\nEnter the zip code on the card. ').strip()
+        if is_zip_code(z_c):
+            print('You may began pumping gas.')
+            return z_c
+        else:
+            print('Invalid Zipcode....')
+
+
+def get_pump_number():
+    while True:
+        pump = int(input('\nWhat pump are you on? '))
+        if is_gas_pump(pump):
+            print('\nI turned the pump on for you.')
+            return pump
+        else:
+            print('That is not a pump number!')
+
+
+def print_receipt(type_of_gas, amount, cost, pump_number):
+    print('\n\t---------Printing Your receipt----------')
+    time.sleep(1.5)
+    print('\t........................................')
+    print('\t........................................')
+    print('\t........................................')
+    print('\t........................................')
+    print('\t........................................')
+    print('\t........................................')
+    print('\t........................................')
+    print('\t........................................')
+    print('\t........................................')
+    print('\t........................................')
+
+    print("\n\t_______DANNY'S EXPRESS MART_______")
+    print("          \t Water Valley, Ms")
+    print('          Thank You Have a blessed day!')
+    print('\n\t.... Type of gas:', type_of_gas)
+    print('\t----------------------------------------')
+    print()
+    print('\t.... Cost of gas:', '$', amount)
+    print('\t----------------------------------------')
+    print()
+    print('\t.... Gallons of gas: {} gallons'.format(cost))
+    print('\t----------------------------------------')
+    print()
+    print('\t.... Pump # ' + str(pump_number))
+    print('\t----------------------------------------')
+    print('\n\t.... Total:', '$' + str(amount))
+    print('\t----------------------------------------')
+    print("\n**Please take your receipt**")
 
 
 def main():
@@ -53,87 +109,53 @@ def main():
         "\nDanny's Express Mart is owned and operated by your very own Danny P."
     )
 
-    type_of_gas = input('\nDo you want regular, plus or premium?').strip()
+    type_of_gas = input(
+        '\nDo you want Regular(R), Plus(Pl) or Premium(P)? ').strip()
 
-    pump = int(input('\nWhat pump are you on?').strip())
-
-    if is_gas_pump(pump):
-        print('\nI turned the pump on for you.')
+    pump_number = get_pump_number()
 
     price = gas_price(type_of_gas)
-
-    if type_of_gas == 'regular':
+    if type_of_gas == 'R':
         print('\nPrice per gallon for regular is $ 2.00')
 
-    if type_of_gas == 'premimum':
+    if type_of_gas == 'P':
         print('\nprice per gallon for premium is $ 2.50')
 
-    if type_of_gas == 'plus':
+    if type_of_gas == 'Pl':
         print('\nprice per gallon for plus is $ 3.00')
 
-    amount = float(input('\nHow much you paying for? $'))
+    amount = input('\nHow much you paying for? $ ')
 
     if amount == 0:
         print('\nGoodbye then')
 
-    cost = round(amount / price)
+    cost = round(float(amount) / price)
 
     print('\nYou can get {} gallons for ${}'.format(cost, amount))
 
     payment = input(
-        '\nHow would you like to pay, now or inside?').strip().lower()
+        '\nHow would you like to pay, now(1) or inside(2)? ').strip().lower()
 
-    if payment in ['now', 'pay now']:
+    if payment == '1':
         print('\nPlease insert card.')
-
-        z_c = input('\nEnter the zip code on the card.').strip()
-
-        if is_zip_code(z_c):
-            print('You may began pumping gas.')
-        else:
-            print('Invaild Zipcode....')
-
-    if payment in ['pay inside', 'inside']:
+        zip_code = get_zip_code()
+    elif payment == '2':
         print('\nPlease pay the person at the counter inside first.')
 
-    receipt = input('\nWould you like a receipt?').strip().lower()
+    receipt = input(
+        '\nWould you like a receipt yes(Y) or no(N)? ').strip().lower()
 
-    if receipt in ['yes', 'yeah']:
-        print('\n\t---------Printing Your receipt----------')
-        print('\t........................................')
-        print('\t........................................')
-        print('\t........................................')
-        print('\t........................................')
-        print('\t........................................')
-        print('\t........................................')
-        print('\t........................................')
-        print('\t........................................')
-        print('\t........................................')
-        print('\t........................................')
-
-        print("\n\t_______DANNY'S EXPRESS MART_______")
-        print("          \tWater Valley, Ms")
-        print('\n\t....type of gas:', type_of_gas)
-        print()
-        print('\t....cost of gas:', '$', amount)
-        print()
-        print('\t....gallons of gas: {} gallons'.format(cost))
-        print()
-        print('\t....Pump # ' + str(pump))
-        print('\n\t....Total:', '$' + str(amount))
-        print(
-            "\nPlease take your receipt, and thank You for shopping at Danny's Express Mart have a blessed day!"
-        )
-
-    if receipt in ['no', 'nope', 'im gucci']:
+    if receipt in ['Y', 'y']:
+        print_receipt(type_of_gas, amount, cost, pump_number)
+    elif receipt in ['N', 'n']:
         print("\n\t _______DANNY'S EXPRESS MART______\n")
         print("           \tWater Valley, MS")
         print(
             "\nThank you for shopping at Danny's Express Mart and have a blessed day!\n"
         )
 
-    text = ('\n{}, {}, {}, {}, {}, {}'.format(type_of_gas, amount, cost, pump,
-                                              payment, receipt))
+    text = ('\n{}, {}, {}, {}, {}, {}'.format(type_of_gas, amount, cost,
+                                              pump_number, payment, receipt))
 
     with open('gas_pump.txt', 'a') as file:
         file.write(text)
