@@ -114,13 +114,13 @@ def main():
     pump_number = get_pump_number()
 
     price = gas_price(type_of_gas)
-    if type_of_gas == 'R':
+    if type_of_gas in ['R', 'r']:
         print('\nPrice per gallon for regular is $ 2.00')
 
-    if type_of_gas == 'P':
+    if type_of_gas in ['P', 'p']:
         print('\nprice per gallon for premium is $ 2.50')
 
-    if type_of_gas == 'Pl':
+    if type_of_gas in ['Pl', 'pi', 'Pi']:
         print('\nprice per gallon for plus is $ 3.00')
 
     amount = input('\nHow much you paying for? $')
